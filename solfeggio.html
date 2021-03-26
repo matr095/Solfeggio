@@ -1,0 +1,188 @@
+<meta charset="UTF-8">
+<title>Exercice de solfège pour piano</title>
+<style>
+	.btn {
+		background: red;
+		color: blue;
+		padding:5px;
+	}
+	.btnCo {
+		background: yellow;
+		color: black;
+		border: 1px solid black;
+		padding:5px;
+		margin-top:10px;
+	}
+	.chrono {
+		background-color: darkblue;
+		width:470px;
+		height:30px;
+	}
+	.inCourse {
+		background-color: red;
+		height:30px;
+		width:470px;
+	}
+	.head {
+		background: darkblue;
+		color: white;
+		font-family: "Arial";
+		font-size: 40px;
+		padding: 1px;
+		width: 468px;
+		border: 1px solid black;
+		margin-bottom: 30px;
+		text-align: center;
+	}
+	.score {
+		text-align: center;
+		padding:5px;
+		margin-top: 30px;
+		margin-left: 150px;
+		width:150px;
+		height:40px;
+		background: red;
+		color: black;
+		font-size: 30px;
+		border: 2Px solid black;
+	}
+</style>
+<div class="head">Exercice de solfège</div><br/>
+<canvas id="tutoriel" width="470" height="150"></canvas>
+<br/>
+<p>Sélectionnez les boutons suivants pour choisir une ou plusieurs notes.<br/>
+Vous pouvez également déselectionner l'ensemble en appuyant ici sur Correction.<br/>
+Le choix final sera pris en compte lors de la fin du chronomètre.</p>
+<span class="btn" onclick="activate('c')">DO</span>
+<span class="btn" onclick="activate('c#')">DO#</span>
+<span class="btn" onclick="activate('d')">RE</span>
+<span class="btn" onclick="activate('d#')">RE#</span>
+<span class="btn" onclick="activate('e')">MI</span>
+<span class="btn" onclick="activate('f')">FA</span>
+<span class="btn" onclick="activate('f#')">FA#</span>
+<span class="btn" onclick="activate('g')">SOL</span>
+<span class="btn" onclick="activate('g#')">SOL#</span>
+<span class="btn" onclick="activate('a')">LA</span>
+<span class="btn" onclick="activate('a#')">LA#</span>
+<span class="btn" onclick="activate('b')">SI</span>
+<span class="btnCo" onclick="correct()">Correction</span>
+<br/><br/>
+<div class="chrono">
+	<div class="inCourse">
+	</div>
+</div>
+<div class="score">
+	Score : 0
+</div>
+
+<script>
+var alea = (Math.floor(Math.random() * 24) + 1)*5;
+var alea1 = (Math.floor(Math.random() * 24) + 1)*5;
+var canvas = document.getElementById('tutoriel');
+var ctx = canvas.getContext('2d');
+var valeurSel = [];
+var response = [];
+var score1 = document.querySelector(".score");
+var score = 0;
+
+function correct() {
+	valeurSel = [];
+}
+
+function activate(note) {
+	if(note == 'c') { if(!valeurSel.includes('DO')) { valeurSel.push("DO") } };
+	if(note == 'c#') { if(!valeurSel.includes('DO#')) { valeurSel.push("DO#") } };
+	if(note == 'd') { if(!valeurSel.includes('RE')) { valeurSel.push("RE") } };
+	if(note == 'd#') { if(!valeurSel.includes('RE#')) { valeurSel.push("RE#") } };
+	if(note == 'e') { if(!valeurSel.includes('MI')) { valeurSel.push("MI") } };
+	if(note == 'f') { if(!valeurSel.includes('FA')) { valeurSel.push("FA") } };
+	if(note == 'f#') { if(!valeurSel.includes('FA#')) { valeurSel.push("FA#") } };
+	if(note == 'g') { if(!valeurSel.includes('SOL')) { valeurSel.push("SOL") } };
+	if(note == 'g#') { if(!valeurSel.includes('SOL#')) { valeurSel.push("SOL#") } };
+	if(note == 'a') { if(!valeurSel.includes('LA')) { valeurSel.push("LA") } };
+	if(note == 'a#') { if(!valeurSel.includes('LA#')) { valeurSel.push("LA#") } };
+	if(note == 'b') { if(!valeurSel.includes('SI')) { valeurSel.push("SI") } };
+}
+
+function draw(alea, alea1) {
+	if(alea == 10 || alea1 == 10) response.push("FA");
+	if(alea == 15 || alea1 == 15) response.push("MI");
+	if(alea == 20 || alea1 == 20) response.push("RE");
+	if(alea == 25 || alea1 == 25) response.push("DO");
+	if(alea == 30 || alea1 == 30) response.push("SI");
+	if(alea == 35 || alea1 == 35) response.push("LA");
+	if(alea == 40 || alea1 == 40) response.push("SOL");
+	if(alea == 45 || alea1 == 45) response.push("FA");
+	if(alea == 50 || alea1 == 50) response.push("MI");
+	if(alea == 55 || alea1 == 55) response.push("RE");
+	if(alea == 60 || alea1 == 60) response.push("DO");
+	if(alea == 65 || alea1 == 65) response.push("SI");
+	if(alea == 70 || alea1 == 70) response.push("LA");
+	if(alea == 75 || alea1 == 75) response.push("SOL");
+	if(alea == 80 || alea1 == 80) response.push("FA");
+	if(alea == 85 || alea1 == 85) response.push("MI");
+	if(alea == 90 || alea1 == 90) response.push("RE");
+	if(alea == 95 || alea1 == 95) response.push("DO");
+	if(alea == 100 || alea1 == 100) response.push("SI");
+	if(alea == 105 || alea1 == 105) response.push("LA");
+	if(alea == 110 || alea1 == 110) response.push("SOL");
+	if(alea == 115 || alea1 == 115) response.push("FA");
+	if(alea == 120 || alea1 == 120) response.push("MI");
+
+	ctx.clearRect(0, 0, 470, 150)
+	ctx.fillStyle = "black"
+	ctx.fillRect(0,0,470,130)
+	ctx.fillStyle = "yellow"
+	ctx.fillRect(120, alea-5, 10, 10);
+	ctx.fillRect(120, alea1-5, 10, 10);
+	ctx.fillStyle = "red"
+	ctx.fillRect(65,5,1,110);
+	ctx.fillRect(185,5,1,110);
+	ctx.fillRect(60,10,130,1);
+	ctx.fillRect(60,20,130,1);
+	ctx.fillRect(60,30,130,1);
+	ctx.fillRect(60,40,130,1);
+	ctx.fillRect(60,50,130,1);
+
+	ctx.fillRect(60,70,130,1);
+	ctx.fillRect(60,80,130,1);
+	ctx.fillRect(60,90,130,1);
+	ctx.fillRect(60,100,130,1);
+	ctx.fillRect(60,110,130,1);
+
+	
+	ctx.font = "10px Arial";
+	ctx.fillText("Exercice de solfège", 250, 25);
+	ctx.fillText("On considère que vous vous trouvez", 250, 60);
+	ctx.fillText("en plein milieu d'une partition.", 250, 75);
+	ctx.fillText("La portée du haut est en clé de sol.", 250, 90);
+	ctx.fillText("La portée du bas est en clé de fa.", 250, 105);
+}
+draw(alea, alea1);
+
+valeur = 470;
+
+
+
+setInterval(function() {
+	var course = document.querySelector(".inCourse");
+	valeur -= 10;
+	if(valeur == 0) {
+		valeurSel = valeurSel.sort();
+		response = response.sort()
+		valeur = 470;
+		if(JSON.stringify(valeurSel) == JSON.stringify(response)) {
+			score += 30;
+			score1.innerHTML = "Score : " + score
+		}
+		valeurSel = [];
+		response = [];
+		alea = (Math.floor(Math.random() * 24) + 1)*5;
+		alea1 = (Math.floor(Math.random() * 24) + 1)*5;
+		draw(alea, alea1);
+	}
+	course.style.width = valeur + "px";
+
+}, 800)
+
+</script>
